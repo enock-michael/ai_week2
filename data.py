@@ -24,17 +24,17 @@ df_long['year'] = pd.to_numeric(df_long['year'], errors='coerce')
 # Drop missing CO2 values
 df_long = df_long.dropna(subset=['co2'])
 
-print("✅ Data loaded and transformed successfully!")
+print(" Data loaded and transformed successfully!")
 print(df_long.head())
 
 # -----------------------------
 # 2. Select example country
 # -----------------------------
-country_name = "Kenya"
+country_name = "Tanzania"
 country_data = df_long[df_long['country'] == country_name].copy()
 
 if country_data.empty:
-    raise ValueError(f"❌ Country '{country_name}' not found in dataset.")
+    raise ValueError(f"Country '{country_name}' not found in dataset.")
 
 # -----------------------------
 # 3. Prepare data for regression
@@ -61,7 +61,7 @@ mae = mean_absolute_error(y_test, y_pred)
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 r2 = r2_score(y_test, y_pred)
 
-print(f"\n📊 Model Evaluation for {country_name}:")
+print(f"\n Model Evaluation for {country_name}:")
 print(f"MAE: {mae:.4f}")
 print(f"RMSE: {rmse:.4f}")
 print(f"R² Score: {r2:.4f}")
@@ -90,7 +90,7 @@ plt.grid(True)
 # Save figure
 plot_file = f"{country_name}_CO2_forecast.png"
 plt.savefig(plot_file)
-print(f"📊 Chart saved to {plot_file}")
+print(f"Chart saved to {plot_file}")
 
 # -----------------------------
 # 8. Save forecast results
@@ -102,4 +102,4 @@ forecast_df = pd.DataFrame({
 forecast_csv = f"{country_name}_CO2_forecast.csv"
 forecast_df.to_csv(forecast_csv, index=False)
 
-print(f"📁 Forecast data saved to {forecast_csv}")
+print(f"Forecast data saved to {forecast_csv}")
